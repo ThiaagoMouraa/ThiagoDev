@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Conte sua ideia a Thiago Moura e prepare uma solicitação de orçamento para seu projeto digital.">
+  <meta name="theme-color" content="#100f0f">
+  <title>Orçamento | Thiago Moura</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="orcamento.css">
+  <script src="script.js" defer></script>
+  <script src="orcamento.js" defer></script>
+</head>
+<body class="budget-page">
+  <div class="shooting-stars" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <a class="skip-link" href="#principal">Pular para o conteúdo</a>
+  <header class="header">
+    <nav aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="sobre.html">Sobre mim</a>
+      <a href="projetos.html">Projetos</a>
+      <a href="orcamento.html" aria-current="page">Orçamentos</a>
+      <a href="https://web.whatsapp.com/">Fale comigo</a>
+    </nav>
+  </header>
+  <main id="principal" tabindex="-1">
+    <svg class="panel-energy" aria-hidden="true" focusable="false"><path pathLength="100"></path></svg>
+    <div class="robot-scene container" aria-hidden="true">
+      <div class="robot-tiles"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="robot-motion">
+        <img src="assets/budget/robot-hand-optimized.png" alt="" width="1400" height="1400" fetchpriority="high">
+        <svg class="hand-neon" viewBox="0 0 1400 1400" focusable="false">
+          <defs>
+            <filter id="hand-edge" x="-5%" y="-5%" width="110%" height="110%">
+              <feComponentTransfer in="SourceAlpha"><feFuncA type="discrete" tableValues="0 0 1 1"></feFuncA></feComponentTransfer>
+              <feMorphology operator="dilate" radius="5" result="outer"></feMorphology>
+              <feComposite in="outer" in2="SourceAlpha" operator="out" result="rim"></feComposite>
+              <feFlood flood-color="white"></feFlood>
+              <feComposite in2="rim" operator="in"></feComposite>
+            </filter>
+            <mask id="hand-contour" maskUnits="userSpaceOnUse" x="0" y="0" width="1400" height="1400">
+              <image href="assets/budget/robot-hand-optimized.png" width="1400" height="1400" filter="url(#hand-edge)"></image>
+            </mask>
+          </defs>
+          <foreignObject width="1400" height="1400" mask="url(#hand-contour)"><div class="hand-orbit-light"></div></foreignObject>
+        </svg>
+        <span class="finger-energy"></span>
+      </div>
+    </div>
+    <section class="budget-panel" aria-labelledby="budget-title">
+      <div class="budget-copy">
+        <h1 id="budget-title" data-reveal>Sua próxima grande ideia merece sair do papel.</h1>
+        <p data-reveal>Conte o que você precisa e descubra como a tecnologia pode transformar seu negócio. Preencha o formulário e solicite seu orçamento!</p>
+        <h2 class="neon-sign" data-reveal>Faça já o seu orçamento</h2>
+        <p data-reveal>Atendimento personalizado, agilidade na entrega e preços que surpreendem — tudo para transformar sua ideia em um projeto com resultado de verdade.</p>
+        <p data-reveal>Preencha o formulário e dê o primeiro passo!</p>
+        <a class="neon-arrow" href="#nome" aria-label="Ir para o primeiro campo do formulário" data-reveal><span aria-hidden="true"></span></a>
+      </div>
+      <form id="budget-form" class="budget-form" aria-label="Solicitação de orçamento">
+        <div class="form-field" data-reveal>
+          <label for="nome">Nome <span aria-hidden="true">*</span></label>
+          <div class="field-control"><input id="nome" name="nome" type="text" autocomplete="name" required maxlength="100" placeholder="Seu nome"></div>
+        </div>
+        <div class="form-field" data-reveal>
+          <label for="email">E-mail <span aria-hidden="true">*</span></label>
+          <div class="field-control"><input id="email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="voce@exemplo.com"></div>
+        </div>
+        <div class="form-field" data-reveal>
+          <label for="telefone">Telefone</label>
+          <div class="field-control"><input id="telefone" name="telefone" type="tel" autocomplete="tel" maxlength="30" placeholder="DDD e número"></div>
+        </div>
+        <div class="form-field" data-reveal>
+          <label for="mensagem">Conte sobre seu projeto <span aria-hidden="true">*</span></label>
+          <div class="field-control"><textarea id="mensagem" name="mensagem" required maxlength="5000" rows="9" placeholder="Descreva sua ideia, objetivos e o que você precisa." aria-describedby="message-help"></textarea></div>
+          <p id="message-help" class="form-help">Campos com * são obrigatórios. O envio será confirmado no seu aplicativo de e-mail.</p>
+        </div>
+        <button class="contact-button budget-submit" type="submit" data-reveal>Enviar por e-mail</button>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+        <div id="request-preview" class="request-preview" hidden>
+          <label for="request-text">Sua solicitação</label>
+          <textarea id="request-text" rows="9" readonly></textarea>
+          <button id="copy-request" type="button" class="copy-request">Copiar solicitação</button>
+          <a href="mailto:negociosrm1136@gmail.com">Abrir aplicativo de e-mail</a>
+        </div>
+        <noscript><p class="form-help">Para solicitar seu orçamento, envie um e-mail para <a href="mailto:negociosrm1136@gmail.com">negociosrm1136@gmail.com</a>.</p></noscript>
+      </form>
+    </section>
+  </main>
+  <footer id="contato" class="footer" aria-label="Contato e redes sociais">
+    <div class="social-mark">
+      <img class="logo" src="assets/logo.png" alt="Thiago Moura" width="115" height="110" loading="lazy">
+      <div class="social-links">
+        <a href="https://www.instagram.com/thiagomoura_oliveira?exln=MWdmMmdqMW5ucDgyNA%3D%3D&amp;utm_source=qr" aria-label="Instagram de Thiago Moura"><img src="assets/instagram.png" alt="" width="40" height="40" loading="lazy"></a>
+        <a href="https://github.com/" aria-label="GitHub"><img src="assets/github.png" alt="" width="47" height="47" loading="lazy"></a>
+        <a href="https://web.whatsapp.com/" aria-label="WhatsApp Web"><img src="assets/whatsapp.png" alt="" width="41" height="41" loading="lazy"></a>
+      </div>
+      <p>Minhas Redes</p>
+    </div>
+  </footer>
+  <dialog id="pending-dialog" aria-labelledby="pending-title">
+    <h2 id="pending-title">Link em preparação</h2>
+    <p id="pending-description"></p>
+    <form method="dialog"><button class="contact-button">Fechar</button></form>
+  </dialog>
+</body>
+</html>

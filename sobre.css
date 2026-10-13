@@ -1,0 +1,85 @@
+/* Página Sobre mim — frame 2031:848; usa os tokens e movimentos compartilhados. */
+.about-page h1, .about-page main h2 {
+  font-size: calc(94.579 * var(--u));
+  font-weight: 900;
+  line-height: 1.21;
+}
+.about-page main p {
+  font-size: calc(32 * var(--u));
+  font-weight: 900;
+  line-height: 1.21;
+}
+.about-intro {
+  margin-top: calc(203 * var(--u));
+  display: grid;
+  grid-template-columns: calc(356.419 * var(--u)) 1fr;
+  gap: calc(57 * var(--u));
+  padding-left: calc(13 * var(--u));
+  min-height: calc(475.226 * var(--u));
+}
+.about-portrait, .about-skills-image, .about-mission-image {
+  border: var(--photo-border);
+  width: 100%;
+}
+.about-portrait {
+  aspect-ratio: 356.419 / 475.226;
+  border-radius: calc(109 * var(--u)) calc(6 * var(--u)) calc(109 * var(--u)) calc(6 * var(--u));
+  box-shadow: calc(-24 * var(--u)) calc(20 * var(--u)) calc(65 * var(--u)) #323030;
+}
+.about-intro-copy { padding-top: calc(69 * var(--u)); }
+.about-intro-copy p { margin-top: calc(66 * var(--u)); }
+.about-skills {
+  margin-top: calc(188 * var(--u));
+  padding-block: calc(98 * var(--u)) calc(124 * var(--u));
+  background: var(--tile-light);
+  min-height: calc(857 * var(--u));
+}
+.about-skills-grid {
+  display: grid;
+  grid-template-columns: 60.03% 38.22%;
+  gap: 1.75%;
+  align-items: start;
+  margin-top: calc(55.56 * var(--u));
+}
+.about-skills-grid p { min-height: calc(465 * var(--u)); }
+.about-skills-image {
+  margin-top: calc(41 * var(--u));
+  aspect-ratio: 460.931 / 259.274;
+  border-radius: calc(24.324 * var(--u));
+}
+.about-mission {
+  display: grid;
+  grid-template-columns: calc(388.803 * var(--u)) 1fr;
+  gap: calc(95 * var(--u));
+  align-items: start;
+  margin-top: calc(211 * var(--u));
+  padding-left: calc(8 * var(--u));
+}
+.about-mission-image {
+  margin-top: calc(16 * var(--u));
+  aspect-ratio: 388.803 / 559.373;
+  border-radius: calc(30 * var(--u));
+  box-shadow: calc(-24 * var(--u)) calc(20 * var(--u)) calc(65 * var(--u)) #434343;
+}
+.about-mission-copy { min-width: 0; }
+.about-mission-copy p { margin-top: calc(35 * var(--u)); line-height: 1.35; }
+.about-mission-copy p + p { margin-top: calc(24 * var(--u)); }
+.about-page .footer { margin-top: calc(300 * var(--u)); }
+@media (max-width: 1000px) {
+  .about-page h1, .about-page main h2 { font-size: clamp(30px, 7.5vw, 46px); overflow-wrap: anywhere; }
+  .about-page main p { font-size: 17px; line-height: 1.55; }
+  .about-intro { margin-top: 46px; grid-template-columns: 1fr; gap: 36px; padding-left: 0; min-height: 0; }
+  .about-portrait { width: min(74%, 290px); margin-inline: auto; }
+  .about-intro-copy { padding-top: 0; }
+  .about-intro-copy p { margin-top: 24px; }
+  .about-skills { margin-top: 72px; padding-block: 48px; min-height: 0; }
+  .about-skills-grid { grid-template-columns: 1fr; gap: 32px; margin-top: 24px; }
+  .about-skills-grid p { min-height: 0; }
+  .about-skills-image { margin-top: 0; }
+  .about-mission { margin-top: 72px; grid-template-columns: 1fr; gap: 32px; padding-left: 0; }
+  .about-mission-copy { grid-row: 1; }
+  .about-mission-copy p { margin-top: 24px; }
+  .about-mission-copy p + p { margin-top: 20px; }
+  .about-mission-image { margin-top: 0; width: min(74%, 290px); }
+  .about-page .footer { margin-top: 96px; }
+}
