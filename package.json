@@ -1,0 +1,15 @@
+{
+  "name": "thiagodev-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.js",
+    "test": "node --test tests/budget.test.js"
+  },
+  "engines": {
+    "node": ">=22.9.0"
+  },
+  "dependencies": {
+    "nodemailer": "^10.1.0"
+  }
+}

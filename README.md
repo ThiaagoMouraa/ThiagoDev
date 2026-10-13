@@ -1,6 +1,8 @@
 # Portfólio — Thiago Moura
 
-Implementação local em HTML, CSS e JavaScript, sem instalação de dependências.
+Implementação local em HTML, CSS e JavaScript, com servidor Node.js e Nodemailer para envio direto do formulário.
+
+Para testar o envio, consulte [ENVIO-EMAIL.md](ENVIO-EMAIL.md), configure as variáveis do servidor e execute `npm start`. Live Server continua disponível para revisar o visual, mas não executa a API de envio.
 
 ## Abrir no VS Code
 
@@ -59,7 +61,7 @@ A imagem original da camada 2170:32 está preservada em `assets/budget/robot-han
 
 O formulário mantém Nome, E-mail, Telefone opcional e Mensagem, com validação nativa e uma área de mensagem maior e redimensionável. O último campo permanece dentro da coluna, sem largura fixa. O frame atualizado contém dois campos de Telefone; a implementação mantém um único campo para evitar informação duplicada.
 
-O destino do formulário é `negociosrm1136@gmail.com`, configurado em `budgetEmail` em `orcamento.js`. Enviar por e-mail valida os campos e abre o aplicativo de e-mail com destinatário, assunto e todas as informações preenchidas. O visitante precisa confirmar o envio no aplicativo. Se não houver aplicativo configurado, ou se uma mensagem longa exceder o limite do aplicativo, é possível copiar a solicitação e enviá-la manualmente. Nenhum dado é salvo pelo site. Envio automático pelo site exige um backend ou serviço de formulários; não foi configurado um serviço externo nem foram adicionadas credenciais ao JavaScript.
+O formulário envia os dados diretamente para `POST /api/orcamento`, no servidor Node.js. O destinatário padrão é `negociosrm1136@gmail.com`, alterável somente pela variável `BUDGET_TO` no servidor. A confirmação aparece na página após o servidor SMTP aceitar a mensagem. O visitante não precisa abrir aplicativo de e-mail. As credenciais não são enviadas ao navegador. Consulte [ENVIO-EMAIL.md](ENVIO-EMAIL.md) para ativar o SMTP; nenhuma credencial real foi configurada e nenhuma publicação foi realizada.
 
 Projetos agora abre `projetos.html`, com o Thiago Dev Workbench em destaque.
 

@@ -1,10 +1,10 @@
 'use strict';
 
-const budgetEmail = 'negociosrm1136@gmail.com';
 const budgetForm = document.querySelector('#budget-form');
 const formStatus = document.querySelector('#form-status');
-const requestPreview = document.querySelector('#request-preview');
-const requestText = document.querySelector('#request-text');
+const submitButton = budgetForm.querySelector('[type="submit"]');
+let isSending = false;
+let requestId = null;
 
 // Energia azul: mao, contorno externo do painel e cada campo em sequencia.
 const energyMain = document.querySelector('#principal');
@@ -14,6 +14,7 @@ budgetForm.querySelectorAll('.form-field').forEach((field, index) => {
   field.style.setProperty('--field-delay', `${4.4 + index * .75}s`);
 });
 const energyMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const animatedHand = document.querySelector('robot-hand');
 let panelIsVisible = false;
 let handIsVisible = false;
 
@@ -38,6 +39,8 @@ function syncEnergyMotion() {
   const motionAllowed = !energyMotion.matches && !document.hidden;
   energyMain.classList.toggle('energy-active', panelIsVisible && motionAllowed);
   energyMain.classList.toggle('hand-active', handIsVisible && motionAllowed);
+  animatedHand.toggleAttribute('active', handIsVisible && motionAllowed);
+  animatedHand.toggleAttribute('paused', !handIsVisible || !motionAllowed);
 }
 
 const energyVisibility = new IntersectionObserver((entries) => {
@@ -58,46 +61,58 @@ energyMotion.addEventListener('change', syncEnergyMotion);
 document.addEventListener('visibilitychange', syncEnergyMotion);
 updateEnergyPath();
 
-function buildBudgetRequest(fields) {
-  return [
-    'Olá, Thiago! Gostaria de solicitar um orçamento.',
-    `Nome: ${fields.nome.trim()}`,
-    `E-mail: ${fields.email.trim()}`,
-    `Telefone: ${fields.telefone.trim() || 'Não informado'}`,
-    '',
-    'Sobre o projeto:',
-    fields.mensagem.trim(),
-  ].join('\n');
-}
-
-budgetForm.addEventListener('submit', (event) => {
+budgetForm.addEventListener('submit', async (event) => {
   event.preventDefault();
+  if (isSending) return;
   const fields = Object.fromEntries(new FormData(budgetForm));
-  const messageField = budgetForm.elements.mensagem;
-  messageField.setCustomValidity(fields.mensagem.trim() ? '' : 'Descreva seu projeto para continuar.');
-  const nameField = budgetForm.elements.nome;
-  nameField.setCustomValidity(fields.nome.trim() ? '' : 'Informe seu nome para continuar.');
+  budgetForm.elements.mensagem.setCustomValidity(fields.mensagem.trim() ? '' : 'Descreva seu projeto para continuar.');
+  budgetForm.elements.nome.setCustomValidity(fields.nome.trim() ? '' : 'Informe seu nome para continuar.');
   if (!budgetForm.reportValidity()) return;
-  const message = buildBudgetRequest(fields);
-  requestText.value = message;
-  requestPreview.hidden = false;
-  const contactLink = requestPreview.querySelector('a');
-  contactLink.href = `mailto:${budgetEmail}?subject=${encodeURIComponent('Solicitação de orçamento — Portfólio')}&body=${encodeURIComponent(message)}`;
-  formStatus.textContent = `Pedido preparado para ${budgetEmail}. Confirme o envio no seu aplicativo de e-mail. Se ele não abrir, copie a solicitação e envie para esse endereço.`;
-  window.location.href = contactLink.href;
+  requestId ||= crypto.randomUUID();
+  isSending = true;
+  submitButton.disabled = true;
+  submitButton.textContent = 'Enviando…';
+  budgetForm.setAttribute('aria-busy', 'true');
+  const controls = [...budgetForm.querySelectorAll('input, textarea')];
+  controls.forEach(control => { control.readOnly = true; });
+  formStatus.dataset.state = 'pending';
+  formStatus.textContent = 'Enviando sua solicitação. Aguarde um momento.';
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 35000);
+  let sent = false;
+  try {
+    const response = await fetch('api/orcamento', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Request-Id': requestId },
+      body: JSON.stringify(fields),
+      signal: controller.signal,
+    });
+    const result = await response.json().catch(() => null);
+    if (!response.ok || result?.ok !== true) throw new Error(result?.message || 'O envio está indisponível. Seus dados foram mantidos; tente novamente mais tarde.');
+    sent = true;
+    formStatus.dataset.state = 'success';
+    formStatus.textContent = result.message;
+    submitButton.textContent = 'Solicitação enviada';
+  } catch (error) {
+    formStatus.dataset.state = 'error';
+    formStatus.textContent = error instanceof TypeError || error.name === 'AbortError'
+      ? 'Não foi possível confirmar o envio. Seus dados foram mantidos. Verifique a conexão e tente novamente.'
+      : error.message;
+    submitButton.textContent = 'Tentar novamente';
+  } finally {
+    clearTimeout(timeout);
+    isSending = false;
+    controls.forEach(control => { control.readOnly = false; });
+    budgetForm.removeAttribute('aria-busy');
+    submitButton.disabled = sent;
+  }
 });
 budgetForm.addEventListener('input', (event) => {
   if ('setCustomValidity' in event.target) event.target.setCustomValidity('');
-  requestPreview.hidden = true;
+  if (isSending) return;
+  requestId = null;
+  submitButton.disabled = false;
+  submitButton.textContent = 'Enviar solicitação';
   formStatus.textContent = '';
-});
-document.querySelector('#copy-request').addEventListener('click', async () => {
-  try {
-    await navigator.clipboard.writeText(requestText.value);
-    formStatus.textContent = `Solicitação copiada. Cole a mensagem em um e-mail para ${budgetEmail}.`;
-  } catch {
-    requestText.focus();
-    requestText.select();
-    formStatus.textContent = 'Selecione e copie o texto da solicitação para continuar.';
-  }
+  delete formStatus.dataset.state;
 });
