@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" fill="none">
+  <defs><radialGradient id="glow"><stop stop-color="#225e67" stop-opacity=".5"/><stop offset="1" stop-color="#0b121b" stop-opacity="0"/></radialGradient></defs>
+  <path fill="#0b121b" d="M0 0h800v460H0z"/><ellipse cx="400" cy="235" rx="380" ry="250" fill="url(#glow)"/>
+  <g stroke="#67d8ff" opacity=".14"><ellipse cx="400" cy="250" rx="350" ry="160"/><path d="M0 130h120l50 50h80M800 340H670l-50-50h-70"/></g>
+  <rect x="90" y="68" width="620" height="326" rx="14" fill="#121f24" stroke="#476674"/>
+  <path d="M90 114h620M220 114v280" stroke="#354b55"/>
+  <g fill="#a4eaff"><circle cx="114" cy="91" r="4"/><circle cx="130" cy="91" r="4" opacity=".5"/><circle cx="146" cy="91" r="4" opacity=".3"/></g>
+  <text x="245" y="96" font-family="Arial,sans-serif" font-size="12" fill="#a4bdcc" letter-spacing="2">CONCEITO / PAINEL DE OFICINA</text>
+  <g stroke="#4d7272"><rect x="116" y="145" width="78" height="28" rx="5" fill="#29443e"/><path d="M116 196h60m-60 28h78m-78 28h50m-50 28h66"/></g>
+  <text x="250" y="159" font-family="Arial,sans-serif" font-weight="700" font-size="28" fill="#edf6f2">AutoCerto</text>
+  <text x="250" y="184" font-family="Arial,sans-serif" font-size="12" fill="#a6c6b6" letter-spacing="2">GESTÃO DE AUTOCENTER</text>
+  <g fill="#1d3433" stroke="#3d625b"><rect x="250" y="209" width="128" height="58" rx="6"/><rect x="392" y="209" width="128" height="58" rx="6"/><rect x="534" y="209" width="145" height="58" rx="6"/><rect x="250" y="282" width="429" height="82" rx="6"/></g>
+  <g stroke="#97c8ad" stroke-width="3" stroke-linecap="round"><path d="M268 229h35m-35 17h66M410 229h35m-35 17h66M552 229h35m-35 17h78"/></g>
+  <g stroke="#5d817b" stroke-linecap="round"><path d="M268 304h180m-180 20h290m-290 20h250M625 302h36m-36 20h36m-36 20h36"/></g>
+</svg>

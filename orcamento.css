@@ -4,9 +4,12 @@
 .budget-page { --budget-top-space: calc(150 * var(--u)); }
 .budget-page > :is(.header, main, .footer) { position: relative; z-index: 1; }
 .robot-scene { position: relative; margin-top: var(--budget-top-space); height: calc(580 * var(--u)); }
-.robot-tiles { position: absolute; top: calc(252 * var(--u)); left: 10.3%; width: 80.7%; display: grid; grid-template-columns: repeat(4, 1fr); gap: calc(19 * var(--u)); }
-.robot-tiles span { height: calc(149 * var(--u)); background: #323030; border-radius: calc(20 * var(--u)); }
-.robot-tiles span:is(:nth-child(2), :nth-child(4), :nth-child(5), :nth-child(7)) { background: #757575; }
+/* Circuitos de baixo contraste, contidos atras da mao. */
+.robot-backdrop { position: absolute; inset: 8% 0 0; pointer-events: none; background: radial-gradient(ellipse at 50% 58%, #238cff14, #238cff08 32%, transparent 68%); -webkit-mask-image: radial-gradient(ellipse, #000 35%, transparent 75%); mask-image: radial-gradient(ellipse, #000 35%, transparent 75%); }
+.robot-circuits { position: absolute; left: 0; top: 12%; width: 100%; height: 88%; }
+.circuit-lines { stroke: var(--accent-blue); stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; opacity: .2; }
+.circuit-nodes { stroke: var(--accent-blue); stroke-width: 1; fill: #14212a; opacity: .35; }
+.circuit-orbits { stroke: var(--accent-blue); stroke-width: 1; opacity: .09; }
 .robot-motion { position: absolute; left: calc(409 * var(--u)); top: calc(105 * var(--u)); width: calc(621.346 * var(--u)); height: calc(621.346 * var(--u)); pointer-events: none; }
 /* Suaviza a extremidade do braço antes da rotação, sem alterar a imagem. */
 .robot-artwork { position: relative; width: 100%; height: 100%; -webkit-mask-image: linear-gradient(to right, #000 85%, transparent 100%); mask-image: linear-gradient(to right, #000 85%, transparent 100%); }
@@ -96,6 +99,13 @@
 .shooting-stars span:nth-child(6) { left: 75%; top: 71%; --delay: -.4s; --duration: 3.1s; }
 @media (prefers-reduced-motion: reduce) { .shooting-stars { display: none; } }
 @media (prefers-reduced-motion: no-preference) {
+  .hand-active .circuit-lines, .hand-active .circuit-nodes { animation: circuit-pulse 6s ease-in-out infinite; }
+  .hand-active .circuit-nodes { animation-delay: .25s; }
+  @keyframes circuit-pulse {
+    0%, 15%, 100% { opacity: 0; filter: drop-shadow(0 0 0 transparent); }
+    45%, 55% { opacity: .6; filter: drop-shadow(0 0 3px #67d8ff90) drop-shadow(0 0 8px #238cff70); }
+    80% { opacity: 0; filter: drop-shadow(0 0 0 transparent); }
+  }
   .hand-active .hand-neon { opacity: .75; }
   .hand-active .hand-orbit-light { animation: hand-orbit 8s linear infinite; }
   .hand-active .finger-energy { animation: finger-charge 8s ease-out infinite; }
@@ -116,8 +126,9 @@
 @media (max-width: 1000px) {
   .budget-page { --budget-space: 64px; --budget-top-space: 0px; }
   .robot-scene { margin-top: var(--budget-top-space); height: 250px; }
-  .robot-tiles { top: 100px; left: 0; width: 100%; gap: 10px; }
-  .robot-tiles span { height: 75px; }
+  .robot-backdrop { inset: 0 -12% 0; }
+  .robot-circuits { top: 8%; height: 92%; }
+  .circuit-lines { opacity: .16; }
   .robot-motion { --hand-size: min(340px, calc(100vw - 40px)); width: var(--hand-size); height: auto; aspect-ratio: 1; left: 50%; top: calc(262px - var(--hand-size) * .79); transform: translateX(-50%); }
   .robot-motion { --hand-contact: calc(var(--hand-size) * .79 - 12px); clip-path: inset(-160px -160px calc(var(--hand-size) * .21 + 7px) -160px); }
   .hand-portal { --portal-hand-size: min(340px, calc(100vw - 40px)); left: calc(50% - var(--portal-hand-size) * .2055); width: calc(var(--portal-hand-size) * .38); height: 26px; bottom: -13px; margin-left: calc(var(--portal-hand-size) * -.19); }

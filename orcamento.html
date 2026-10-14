@@ -27,7 +27,24 @@
   <main id="principal" tabindex="-1">
     <svg class="panel-energy" aria-hidden="true" focusable="false"><path pathLength="100"></path></svg>
     <div class="robot-scene container" aria-hidden="true">
-      <div class="robot-tiles"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="robot-backdrop">
+        <svg class="robot-circuits" viewBox="0 0 1000 420" fill="none" focusable="false" aria-hidden="true">
+          <g class="circuit-lines">
+            <path d="M40 140H190L245 195H355 M85 210H160L220 270H320 M145 340H255L300 295H380 M80 85H275L320 130H405"/>
+            <path d="M960 140H810L755 195H645 M915 210H840L780 270H680 M855 340H745L700 295H620 M920 85H725L680 130H595"/>
+          </g>
+          <g class="circuit-nodes">
+            <circle cx="355" cy="195" r="4"/><circle cx="320" cy="270" r="4"/>
+            <circle cx="380" cy="295" r="4"/><circle cx="405" cy="130" r="4"/>
+            <circle cx="645" cy="195" r="4"/><circle cx="680" cy="270" r="4"/>
+            <circle cx="620" cy="295" r="4"/><circle cx="595" cy="130" r="4"/>
+          </g>
+          <g class="circuit-orbits">
+            <ellipse cx="500" cy="215" rx="220" ry="155"/>
+            <path d="M260 215a240 175 0 0 1 240-175 M740 215a240 175 0 0 1-240 175"/>
+          </g>
+        </svg>
+      </div>
       <div class="hand-portal portal-back"><span class="portal-vortex"><span class="portal-swirl"></span></span></div>
       <div class="robot-motion">
         <robot-hand aria-hidden="true">

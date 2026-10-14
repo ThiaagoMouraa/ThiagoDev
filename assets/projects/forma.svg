@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" fill="none">
+  <defs><radialGradient id="glow"><stop stop-color="#345a3d" stop-opacity=".6"/><stop offset="1" stop-color="#0b121b" stop-opacity="0"/></radialGradient></defs>
+  <path fill="#0b121b" d="M0 0h800v460H0z"/><ellipse cx="400" cy="235" rx="370" ry="250" fill="url(#glow)"/>
+  <g stroke="#67d8ff" opacity=".15"><ellipse cx="400" cy="265" rx="300" ry="130"/><ellipse cx="400" cy="265" rx="355" ry="180"/></g>
+  <text x="68" y="96" font-family="Arial,sans-serif" font-size="14" letter-spacing="3" fill="#a4bdcc">FORMA / CONCEITO VISUAL</text>
+  <g transform="rotate(-8 340 240)"><rect x="235" y="138" width="210" height="238" rx="30" fill="#244c37" stroke="#6d8d77"/><rect x="232" y="121" width="216" height="43" rx="12" fill="#193524" stroke="#6d8d77"/>
+    <text x="260" y="225" font-family="Arial,sans-serif" font-weight="700" font-size="48" fill="#e9efdc">forma.</text><path d="M260 245h156" stroke="#abc398"/><text x="260" y="286" font-family="Arial,sans-serif" font-size="16" letter-spacing="2" fill="#d1e4bb">CONCEITO</text><path d="M260 317h90m-90 12h64" stroke="#8daa95"/></g>
+  <g transform="rotate(9 510 295)"><rect x="448" y="235" width="165" height="143" rx="22" fill="#c9d97c" stroke="#e0e9ae"/><rect x="445" y="219" width="171" height="35" rx="10" fill="#a3b45e" stroke="#e0e9ae"/>
+    <text x="468" y="299" font-family="Arial,sans-serif" font-weight="700" font-size="36" fill="#203d2b">forma.</text><path d="M468 318h122m-122 22h72" stroke="#536b34"/></g>
+  <text x="400" y="421" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" letter-spacing="3" fill="#a4bdcc">EMBALAGENS ILUSTRATIVAS</text>
+</svg>
